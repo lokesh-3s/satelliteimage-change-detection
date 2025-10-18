@@ -102,18 +102,18 @@ Important: this repo contains frontend and backend services in client/ and serve
    
    *Client (.env):*
    env
-   # The base URL for API requests from the frontend (points at server)
+   The base URL for API requests from the frontend (points at server)
    VITE_API_URL=http://localhost:5000
 
-   # Google Maps JavaScript API Key - used by interactive maps
-   # Make sure Maps JavaScript API is enabled in Google Cloud Console and
-   # add your development origins to HTTP referrers (e.g., http://localhost:5173/*)
+   Google Maps JavaScript API Key - used by interactive maps
+   Make sure Maps JavaScript API is enabled in Google Cloud Console and
+   add your development origins to HTTP referrers (e.g., http://localhost:5173/*)
    VITE_GOOGLE_MAPS_API_KEY=your_google_maps_api_key
 
-   # Stripe publishable key for client-side payment tokenization
+   Stripe publishable key for client-side payment tokenization
    VITE_STRIPE_PUBLIC_KEY=your_stripe_public_key
 
-   # Optional: other API keys used by the demo app (set if you have them)
+   Optional: other API keys used by the demo app (set if you have them)
    VITE_OPENWEATHER_API_KEY=your_openweather_api_key
    VITE_GEMINI_API_KEY=your_gemini_api_key
    

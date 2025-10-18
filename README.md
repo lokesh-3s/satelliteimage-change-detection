@@ -193,31 +193,43 @@ Development tips:
 - Contextual responses
 - Environmental education
 
+---
+
 ## 🏗 Project Structure
 
-
+```
 TerraTrack_BitNBuild/
-├── client/                 # React frontend application
-│   ├── public/            # Static assets
-│   ├── src/
-│   │   ├── components/    # Reusable UI components
-│   │   ├── pages/         # Application pages/routes
-│   │   ├── services/      # API services and utilities
-│   │   ├── context/       # React context providers
-│   │   ├── routes/        # Route configurations
-│   │   └── utils/         # Helper functions
-│   ├── package.json       # Frontend dependencies
-│   └── vite.config.js     # Vite configuration
-├── server/                # Node.js backend application
-│   ├── controllers/       # Route controllers
-│   ├── models/           # MongoDB models
-│   ├── routes/           # API routes
-│   ├── middlewares/      # Custom middleware
-│   ├── config/           # Database and email config
-│   ├── utils/            # Backend utilities
-│   └── package.json      # Backend dependencies
-└── README.md             # Project documentation
-
+├── client/                         # React frontend application
+│   ├── public/                     # Static assets (logos, icons, manifest, etc.)
+│   ├── src/                        # Source files
+│   │   ├── components/             # Reusable UI components
+│   │   ├── pages/                  # Application pages and routes
+│   │   ├── services/               # API service functions and utilities
+│   │   ├── context/                # React Context providers for global state
+│   │   ├── routes/                 # Route configurations
+│   │   ├── utils/                  # Helper functions and utilities
+│   │   ├── assets/                 # Local media, 3D models, and textures
+│   │   └── App.jsx                 # Root application component
+│   ├── index.html                  # HTML entry point
+│   ├── package.json                # Frontend dependencies and scripts
+│   ├── vite.config.js              # Vite configuration
+│   └── .env.example                # Example environment variables (frontend)
+│
+├── server/                         # Node.js backend application
+│   ├── config/                     # Configuration files (DB, email, cloud)
+│   ├── controllers/                # Business logic and route controllers
+│   ├── models/                     # MongoDB models (Mongoose schemas)
+│   ├── routes/                     # API endpoints and route definitions
+│   ├── middlewares/                # Middleware (auth, validation, error handling)
+│   ├── utils/                      # Utility modules and helpers
+│   ├── server.js                   # Entry point for backend server
+│   ├── package.json                # Backend dependencies and scripts
+│   └── .env.example                # Example environment variables (backend)
+│
+├── .gitignore                      # Files and directories ignored by Git
+├── LICENSE                         # Open-source license file
+└── README.md                       # Project documentation
+```
 
 ## 🔧 Available Scripts
 

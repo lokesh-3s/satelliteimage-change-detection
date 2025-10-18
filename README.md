@@ -1,7 +1,6 @@
 # 🌍 TerraTrack - Environmental Impact Platform
 
 <div align="center">
-   <h3>Quick demo</h3>
    <!-- Local demo video; browsers/hosting platforms will serve this file from the repo root when previewed locally or via a static server. -->
    <video controls width="800" style="max-width:100%; border-radius:12px; box-shadow:0 8px 30px rgba(2,6,23,0.6);">
       <source src="./video.mp4" type="video/mp4">
@@ -12,7 +11,10 @@
 TerraTrack is a cutting-edge environmental monitoring and AR visualization platform that combines real-time environmental data tracking, immersive 3D plant experiences, and comprehensive campaign management for environmental conservation efforts.
 
 # Demo Video
-https://github.com/user-attachments/assets/d981a237-aefe-4b57-979e-24b607e2f28e
+
+https://github.com/user-attachments/assets/bac9b49f-2e68-42bc-a581-576616e14f9f
+
+
 
 
 ## ✨ Key Features

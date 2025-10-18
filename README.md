@@ -1,5 +1,14 @@
 # 🌍 TerraTrack - Environmental Impact Platform
 
+<div align="center">
+   <h3>Quick demo</h3>
+   <!-- Local demo video; browsers/hosting platforms will serve this file from the repo root when previewed locally or via a static server. -->
+   <video controls width="800" style="max-width:100%; border-radius:12px; box-shadow:0 8px 30px rgba(2,6,23,0.6);">
+      <source src="./video.mp4" type="video/mp4">
+      Your browser does not support the video tag. You can find the demo file as <code>video.mp4</code> in the project root.
+   </video>
+</div>
+
 TerraTrack is a cutting-edge environmental monitoring and AR visualization platform that combines real-time environmental data tracking, immersive 3D plant experiences, and comprehensive campaign management for environmental conservation efforts.
 
 ## ✨ Key Features
@@ -70,6 +79,8 @@ TerraTrack is a cutting-edge environmental monitoring and AR visualization platf
 - MongoDB database (local or cloud)
 - Git for version control
 
+Important: this repo contains frontend and backend services in `client/` and `server/` respectively. The demo video at the top demonstrates the main workflows.
+
 ### **Installation**
 
 1. **Clone the repository**
@@ -96,9 +107,20 @@ TerraTrack is a cutting-edge environmental monitoring and AR visualization platf
    
    **Client (.env):**
    ```env
+   # The base URL for API requests from the frontend (points at server)
    VITE_API_URL=http://localhost:5000
+
+   # Google Maps JavaScript API Key - used by interactive maps
+   # Make sure Maps JavaScript API is enabled in Google Cloud Console and
+   # add your development origins to HTTP referrers (e.g., http://localhost:5173/*)
    VITE_GOOGLE_MAPS_API_KEY=your_google_maps_api_key
+
+   # Stripe publishable key for client-side payment tokenization
    VITE_STRIPE_PUBLIC_KEY=your_stripe_public_key
+
+   # Optional: other API keys used by the demo app (set if you have them)
+   VITE_OPENWEATHER_API_KEY=your_openweather_api_key
+   VITE_GEMINI_API_KEY=your_gemini_api_key
    ```
    
    **Server (.env):**
@@ -116,6 +138,11 @@ TerraTrack is a cutting-edge environmental monitoring and AR visualization platf
    EMAIL_PASS=your_email_password
    ```
 
+   Notes about keys and restrictions:
+   - Keep production keys out of version control. Use a secrets manager or CI/CD secrets.
+   - For Google Maps, ensure billing is enabled on the Google Cloud project and the Maps JavaScript API is enabled. If you see an "InvalidKeyMapError" in the browser console, check key restrictions and referrers.
+
+
 ### **Running the Application**
 
 1. **Start the Backend Server**
@@ -131,6 +158,16 @@ TerraTrack is a cutting-edge environmental monitoring and AR visualization platf
    npm run dev
    ```
    Frontend will run on `http://localhost:5173`
+
+If you change `.env` in `client/` or `server/`, restart the respective dev server so the values are reloaded.
+
+Quick troubleshooting:
+- Invalid or restricted Google Maps key will produce an "InvalidKeyMapError" in the browser console and the maps will not initialize. Verify the full key (no truncation), API enabled, and allowed referrers.
+- If `window.google` is undefined but you don't see InvalidKey errors, ensure the Maps script is loaded before code that accesses `google.maps`. Use a script loader or a React loader hook (e.g. `@react-google-maps/api`).
+
+Development tips:
+- To test payments use Stripe test keys only. Do not use live keys in local development.
+- To preview frontend static assets (including the demo video) you can use Vite's dev server or `npm run preview` after building.
 
 3. **Access the Application**
    Open your browser and navigate to `http://localhost:5173`

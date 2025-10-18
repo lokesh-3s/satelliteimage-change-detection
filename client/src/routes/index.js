@@ -115,7 +115,7 @@ export const routes = [
     path: '/ar-plants',
     element: ARPlantsPage,
     name: 'AR Plants',
-    isPublic: false,
+    isPublic: true,
     showInNav: true,
   },
 ]

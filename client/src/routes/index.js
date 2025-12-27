@@ -16,6 +16,7 @@ const CampaignDetailsPage = lazy(() => import('../pages/CampaignDetailsPage'))
 const CreateCampaignPage = lazy(() => import('../pages/CreateCampaignPage'))
 const DonationHistoryPage = lazy(() => import('../pages/DonationHistoryPage'))
 const PaymentSuccessPage = lazy(() => import('../pages/PaymentSuccessPage'))
+const GlobeVisualizationPage = lazy(() => import('../pages/GlobeVisualizationPage'))
 
 // Route configuration
 export const routes = [
@@ -118,6 +119,13 @@ export const routes = [
     isPublic: true,
     showInNav: true,
   },
+  {
+    path: '/visualiser',
+    element: GlobeVisualizationPage,
+    name: 'Visualiser',
+    isPublic: true,
+    showInNav: true,
+  },
 ]
 
 // Filter routes by type
@@ -141,6 +149,7 @@ export const ROUTES = {
   ALERTS: '/alerts',
   TERRABOT: '/terrabot',
   AR_PLANTS: '/ar-plants',
+  VISUALISER: '/visualiser',
 }
 
 export default routes

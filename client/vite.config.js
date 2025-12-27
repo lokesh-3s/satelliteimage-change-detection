@@ -8,4 +8,14 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
+  server: {
+    proxy: {
+      '/api/openaq': {
+        target: 'https://api.openaq.org',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api\/openaq/, ''),
+        secure: true,
+      },
+    },
+  },
 })

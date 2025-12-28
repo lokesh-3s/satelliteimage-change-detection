@@ -60,10 +60,12 @@ satellite-backend/outputs/
 satellite-backend/__pycache__/
 satellite-backend/*.pyc
 satellite-backend/dataset/
+satellite-backend/models/*.pth
+satellite-backend/models/*.pt
+
+# Model files (large - download separately)
 *.pth
 *.pt
-
-# Model files (large)
 models/
 *.h5
 *.pkl

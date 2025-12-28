@@ -1,4 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap');
 @import "tailwindcss";
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Orbitron', sans-serif;
+}
+
+.font-orbitron {
+    font-family: 'Orbitron', sans-serif;
+}
 
 /* Hide scrollbar for all browsers */
 ::-webkit-scrollbar {
@@ -6,8 +20,10 @@
 }
 
 * {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
 }
 
 /* Smooth scrolling */
@@ -51,6 +67,7 @@ body {
         opacity: 0;
         transform: translateY(30px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -61,6 +78,7 @@ body {
     from {
         opacity: 0;
     }
+
     to {
         opacity: 1;
     }
@@ -95,10 +113,11 @@ body {
 }
 
 @layer components {
-  .control-input {
-    @apply bg-white/50 border border-emerald-200 text-emerald-800 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-emerald-500 focus:outline-none transition;
-  }
-  .primary-btn {
-    @apply bg-emerald-600 text-white font-semibold rounded-lg px-4 py-2 text-sm hover:bg-emerald-700 transition disabled:bg-gray-300 disabled:cursor-not-allowed;
-  }
+    .control-input {
+        @apply bg-white/50 border border-emerald-200 text-emerald-800 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-emerald-500 focus:outline-none transition;
+    }
+
+    .primary-btn {
+        @apply bg-emerald-600 text-white font-semibold rounded-lg px-4 py-2 text-sm hover:bg-emerald-700 transition disabled:bg-gray-300 disabled:cursor-not-allowed;
+    }
 }

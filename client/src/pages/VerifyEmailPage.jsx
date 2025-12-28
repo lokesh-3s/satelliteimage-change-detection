@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import { Link, useNavigate, useSearchParams } from 'react-router-dom'
-import AuthPageWrapper from '../components/AuthPageWrapper'
 import { ROUTES } from '../routes'
 import { authToasts } from '../utils/toast'
 import { apiUtils, handleApiSuccess, handleApiError } from '../utils/api'
@@ -66,11 +65,38 @@ export default function VerifyEmailPage() {
   }, [searchParams, navigate])
 
   return (
-    <AuthPageWrapper>
+    <div 
+      className="auth-page-container"
+      style={{
+        position: 'fixed',
+        top: '0',
+        left: '0',
+        width: '100vw',
+        height: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        zIndex: 10,
+        padding: '0',
+        margin: '0',
+        boxSizing: 'border-box',
+      }}
+    >
       {/* Glassmorphism Card */}
-      <div className="backdrop-blur-xl bg-white/10 rounded-3xl border border-white/20 shadow-2xl p-8 mt-20
-                      hover:bg-white/15 transition-all duration-300 ease-out opacity-100"
-           style={{ animation: 'fadeInUp 0.5s ease-out forwards' }}>
+      <div 
+        className="auth-card backdrop-blur-xl bg-white/10 rounded-3xl border border-white/20 shadow-2xl p-8
+                   hover:bg-white/15 transition-all duration-300 ease-out"
+        style={{ 
+          width: '400px',
+          maxWidth: '90vw',
+          margin: '0 auto',
+          position: 'relative',
+          left: '0',
+          right: '0',
+          transform: 'none',
+          animation: 'fadeInUp 0.5s ease-out forwards' 
+        }}
+      >
           
           {/* Header */}
           <div className="text-center mb-8">
@@ -189,6 +215,6 @@ export default function VerifyEmailPage() {
             )}
           </div>
         </div>
-    </AuthPageWrapper>
+    </div>
   )
 }

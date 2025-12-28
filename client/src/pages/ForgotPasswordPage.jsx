@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
-import AuthPageWrapper from '../components/AuthPageWrapper'
 import { toastUtils } from '../utils/toast'
 
 export default function ForgotPasswordPage() {
@@ -76,11 +75,39 @@ export default function ForgotPasswordPage() {
   }
 
   return (
-    <AuthPageWrapper>
+    <div 
+      className="auth-page-container"
+      style={{
+        position: 'fixed',
+        top: '0',
+        left: '0',
+        width: '100vw',
+        height: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        zIndex: 10,
+        padding: '0',
+        margin: '0',
+        boxSizing: 'border-box',
+        overflowY: 'auto',
+      }}
+    >
       {/* Glassmorphism Card */}
-      <div className="backdrop-blur-xl bg-white/10 rounded-3xl border border-white/20 shadow-2xl p-8 
-                      hover:bg-white/15 transition-all duration-300 ease-out opacity-100"
-           style={{ animation: 'fadeInUp 0.5s ease-out forwards' }}>
+      <div 
+        className="auth-card backdrop-blur-xl bg-white/10 rounded-3xl border border-white/20 shadow-2xl p-8 
+                   hover:bg-white/15 transition-all duration-300 ease-out"
+        style={{ 
+          width: '400px',
+          maxWidth: '90vw',
+          margin: '0 auto',
+          position: 'relative',
+          left: '0',
+          right: '0',
+          transform: 'none',
+          animation: 'fadeInUp 0.5s ease-out forwards' 
+        }}
+      >
           
           {/* Header */}
           <div className="text-center mb-8">
@@ -334,6 +361,6 @@ export default function ForgotPasswordPage() {
             </p>
           </div>
         </div>
-    </AuthPageWrapper>
+    </div>
   )
 }

@@ -20,9 +20,9 @@ function DashboardPageComponent() {
       lat: e.latLng.lat(),
       lng: e.latLng.lng(),
     };
-    
+
     setSelectedPoint(point);
-    
+
     // Get location insights immediately when a point is selected
     try {
       const insights = await getLocationInsights(point.lat, point.lng);
@@ -63,12 +63,12 @@ function DashboardPageComponent() {
     if (analysisResults && analysisResults.years && analysisResults.values && analysisResults.values.length > 0) {
       const ctx = document.getElementById('timelineChart');
       if (chartRef.current) chartRef.current.destroy();
-      
+
       // Determine chart color based on trend
       const startValue = analysisResults.values[0];
       const endValue = analysisResults.values[analysisResults.values.length - 1];
       const trendColor = endValue >= startValue ? '#10B981' : '#EF4444';
-      
+
       chartRef.current = new Chart(ctx, {
         type: 'line',
         data: {
@@ -90,13 +90,13 @@ function DashboardPageComponent() {
           responsive: true,
           maintainAspectRatio: false,
           scales: {
-            y: { 
-              title: { display: true, text: analysisResults.metricName, color: '#065f46' }, 
+            y: {
+              title: { display: true, text: analysisResults.metricName, color: '#065f46' },
               ticks: { color: '#047857' },
               grid: { color: 'rgba(255, 255, 255, 0.1)' }
             },
-            x: { 
-              title: { display: true, text: 'Year', color: '#065f46' }, 
+            x: {
+              title: { display: true, text: 'Year', color: '#065f46' },
               ticks: { color: '#047857' },
               grid: { color: 'rgba(255, 255, 255, 0.1)' }
             }
@@ -125,7 +125,7 @@ function DashboardPageComponent() {
     const change = ((endValue - startValue) / Math.abs(startValue)) * 100;
     const changeType = change >= 0 ? 'increased' : 'decreased';
     const interpretation = getAnalysisDescription(analysisType, values, startYear, endYear);
-    
+
     // Debug logging
     console.log('Analysis Results:', analysisResults);
     console.log('Interpretation:', interpretation);
@@ -203,24 +203,24 @@ function DashboardPageComponent() {
   }, []);
 
   return (
-    <div style={{marginTop: '50px'}} className="min-h-screen flex items-center justify-center px-4 py-20 relative z-10">      
+    <div style={{ marginTop: '50px' }} className="min-h-screen flex items-center justify-center px-4 py-20 relative z-10">
       <div className="w-full max-w-7xl">
         <div className="backdrop-blur-xl bg-white/10 rounded-3xl border border-white/20 shadow-2xl p-8 
                         hover:bg-white/15 transition-all duration-300 ease-out">
           <div className="flex flex-wrap gap-4 items-center justify-between">
             <h1 className="text-3xl font-bold text-white">🌍 Environmental Analysis Dashboard</h1>
             <div className="flex flex-wrap items-center gap-3">
-              <select value={startYear} onChange={e => setStartYear(e.target.value)} className="control-input">
+              <select value={startYear} onChange={e => setStartYear(e.target.value)} className="bg-white/50 border border-emerald-200 text-emerald-800 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-emerald-500 focus:outline-none transition">
                 <option value="2018">2018</option><option value="2019">2019</option><option value="2020">2020</option><option value="2021">2021</option><option value="2022">2022</option>
               </select>
-              <select value={endYear} onChange={e => setEndYear(e.target.value)} className="control-input">
+              <select value={endYear} onChange={e => setEndYear(e.target.value)} className="bg-white/50 border border-emerald-200 text-emerald-800 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-emerald-500 focus:outline-none transition">
                 <option value="2020">2020</option><option value="2021">2021</option><option value="2022">2022</option><option value="2023">2023</option>
               </select>
-              <select value={analysisType} onChange={e => setAnalysisType(e.target.value)} className="control-input">
+              <select value={analysisType} onChange={e => setAnalysisType(e.target.value)} className="bg-white/50 border border-emerald-200 text-emerald-800 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-emerald-500 focus:outline-none transition">
                 <option value="ndvi">🌱 Vegetation</option><option value="ndwi">💧 Water Bodies</option><option value="urban">🏙️ Urban Expansion</option>
                 <option value="temperature">🌡️ Temperature</option><option value="precipitation">🌧️ Precipitation</option>
               </select>
-              <button onClick={handleAnalyze} disabled={!selectedPoint || loading} className="primary-btn">
+              <button onClick={handleAnalyze} disabled={!selectedPoint || loading} className="bg-emerald-600 text-white font-semibold rounded-lg px-4 py-2 text-sm hover:bg-emerald-700 transition disabled:bg-gray-300 disabled:cursor-not-allowed">
                 {loading ? 'Analyzing...' : '🔍 Analyze Point'}
               </button>
             </div>
@@ -242,7 +242,7 @@ function DashboardPageComponent() {
           {/* Results Panel */}
           <div className="bg-white/10 backdrop-blur-xl rounded-3xl border border-white/20 shadow-2xl p-6 hover:bg-white/15 transition-all duration-300 ease-out overflow-y-auto max-h-[75vh]">
             <h2 className="text-2xl font-bold text-white mb-4">Analysis Results</h2>
-            
+
             {/* Location Insights */}
             {locationInsights && !analysisResults && (
               <div className="mb-6 p-4 bg-white/5 rounded-2xl border border-white/10">
@@ -256,7 +256,7 @@ function DashboardPageComponent() {
                 </div>
               </div>
             )}
-            
+
             {loading ? (
               <div className="flex justify-center items-center h-full min-h-[300px]">
                 <div className="animate-spin rounded-full h-12 w-12 border-4 border-emerald-500 border-t-transparent"></div>

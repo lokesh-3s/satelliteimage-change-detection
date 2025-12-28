@@ -1,0 +1,92 @@
+========================================
+⚠️  IMPORTANT: GET YOUR GEMINI API KEY
+========================================
+
+Your previous API key was LEAKED and BLOCKED by Google.
+
+You need to get a NEW API key to use the satellite analysis feature.
+
+========================================
+HOW TO GET YOUR NEW API KEY:
+========================================
+
+1. Open your browser and go to:
+   👉 https://aistudio.google.com/app/apikey
+
+2. Sign in with your Google account
+
+3. Click "Create API Key" button
+
+4. Copy the API key (starts with "AIza...")
+
+5. Open this file in a text editor:
+   👉 TerraTrack_BitNBuild/.env
+
+6. Find this line:
+   GEMINI_API_KEY=your-new-gemini-api-key-here
+
+7. Replace "your-new-gemini-api-key-here" with your actual key
+
+8. Save the file
+
+9. Restart the servers by running:
+   👉 START_ALL_SERVERS.bat
+
+========================================
+EXAMPLE:
+========================================
+
+Before:
+GEMINI_API_KEY=your-new-gemini-api-key-here
+
+After:
+GEMINI_API_KEY=AIzaSyABC123YourActualKeyHere
+
+========================================
+WHY WAS MY KEY BLOCKED?
+========================================
+
+Your API key was accidentally exposed in a public place
+(like GitHub, screenshot, or shared code). Google detected
+this and blocked it for security reasons.
+
+This is normal and happens to protect your account.
+Just create a new key and keep it private!
+
+========================================
+SECURITY TIPS:
+========================================
+
+✅ DO:
+- Keep your API key in .env files
+- Add .env to .gitignore
+- Never share your .env file
+- Create new keys if leaked
+
+❌ DON'T:
+- Commit .env files to Git
+- Share API keys publicly
+- Post screenshots with keys
+- Hardcode keys in code
+
+========================================
+NEED HELP?
+========================================
+
+If you have trouble:
+1. Make sure you're signed in to Google
+2. Try a different browser
+3. Clear browser cache
+4. Check Google AI Studio status
+
+========================================
+
+After getting your key, run: START_ALL_SERVERS.bat
+
+Then open: http://localhost:5173
+
+Navigate to: TerraBot → Satellite Analysis
+
+🚀 Happy analyzing!
+
+========================================

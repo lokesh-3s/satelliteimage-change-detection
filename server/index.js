@@ -10,6 +10,7 @@ import uploadRouter from './routes/upload.routes.js';
 import campaignRouter from './routes/campaign.routes.js';
 import donationRouter from './routes/donation.routes.js';
 import stripeRouter from './routes/stripe.routes.js';
+import satelliteRouter from './routes/satellite.routes.js';
 
 
 dotenv.config();
@@ -41,6 +42,7 @@ app.use("/api/file", uploadRouter);
 app.use("/api/campaigns", campaignRouter);
 app.use("/api/donations", donationRouter);
 app.use("/api/stripe", stripeRouter);
+app.use("/api/satellite", satelliteRouter);
 
 
 connectDB().then(()=>{

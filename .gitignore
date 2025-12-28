@@ -40,6 +40,34 @@ dist/
 .env
 .env.*
 
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+*.egg-info/
+dist/
+build/
+
+# Satellite Backend
+satellite-backend/backend/uploads/
+satellite-backend/results/
+satellite-backend/outputs/
+satellite-backend/__pycache__/
+satellite-backend/*.pyc
+satellite-backend/dataset/
+*.pth
+*.pt
+
+# Model files (large)
+models/
+*.h5
+*.pkl
+
 # Next.js build output
 .next/
 

@@ -1,17 +1,15 @@
-import { GoogleGenAI } from '@google/genai'
+import { GoogleGenerativeAI } from '@google/generative-ai'
 
 class GeminiService {
   constructor() {
-    this.ai = new GoogleGenAI({
-      apiKey: import.meta.env.VITE_GEMINI_API_KEY || import.meta.env.GEMINI_API_KEY
-    })
+    const apiKey = import.meta.env.VITE_GEMINI_API_KEY || import.meta.env.GEMINI_API_KEY
     
-    this.model = 'gemini-2.5-pro'
-    this.config = {
-      thinkingConfig: {
-        thinkingBudget: -1,
-      },
+    if (!apiKey) {
+      console.warn('Gemini API key not found. Chat features will be limited.')
     }
+    
+    this.ai = new GoogleGenerativeAI(apiKey)
+    this.model = 'gemini-1.5-flash'
   }
 
   // Main method to analyze climate queries with web scraping
@@ -90,18 +88,10 @@ Please provide a comprehensive, well-researched response with recent data, prope
         }
       ]
 
-      const response = await this.ai.models.generateContentStream({
-        model: this.model,
-        config: this.config,
-        contents
-      })
-
-      let fullResponse = ''
-      for await (const chunk of response) {
-        if (chunk.text) {
-          fullResponse += chunk.text
-        }
-      }
+      const model = this.ai.getGenerativeModel({ model: this.model })
+      const result = await model.generateContent(contents)
+      const response = await result.response
+      const fullResponse = response.text()
 
       // Try to parse JSON response, fallback to plain text if not JSON
       try {
@@ -273,16 +263,10 @@ Please generate **5-7 actionable environmental alerts** for the user.
         { role: 'user', parts: [{ text: prompt }] }
       ];
 
-      const response = await this.ai.models.generateContentStream({
-        model: this.model,
-        config: this.config,
-        contents
-      });
-
-      let fullResponse = '';
-      for await (const chunk of response) {
-        if (chunk.text) fullResponse += chunk.text;
-      }
+      const model = this.ai.getGenerativeModel({ model: this.model })
+      const result = await model.generateContent(contents)
+      const response = await result.response
+      const fullResponse = response.text()
 
       const alerts = this.extractJSON(fullResponse) || [];
       return alerts;

@@ -1,0 +1,329 @@
+========================================
+🎯 QUICK VISUAL GUIDE
+========================================
+
+┌─────────────────────────────────────┐
+│  STEP 1: GET API KEY                │
+│  ⚠️  CRITICAL - DO THIS FIRST!      │
+└─────────────────────────────────────┘
+
+    1. Open Browser
+       ↓
+    2. Go to: https://aistudio.google.com/app/apikey
+       ↓
+    3. Click "Create API Key"
+       ↓
+    4. Copy the key (starts with "AIza...")
+       ↓
+    5. Keep it safe!
+
+========================================
+
+┌─────────────────────────────────────┐
+│  STEP 2: UPDATE .ENV FILE           │
+│  📝 PASTE YOUR KEY HERE             │
+└─────────────────────────────────────┘
+
+    1. Open File Explorer
+       ↓
+    2. Navigate to: TerraTrack_BitNBuild
+       ↓
+    3. Open: .env (with Notepad)
+       ↓
+    4. Find: GEMINI_API_KEY=your-new-gemini-api-key-here
+       ↓
+    5. Replace with: GEMINI_API_KEY=AIzaYourActualKey
+       ↓
+    6. Save file (Ctrl+S)
+       ↓
+    7. Close Notepad
+
+========================================
+
+┌─────────────────────────────────────┐
+│  STEP 3: START SERVERS              │
+│  🚀 ONE CLICK!                      │
+└─────────────────────────────────────┘
+
+    1. Open File Explorer
+       ↓
+    2. Navigate to: TerraTrack_BitNBuild
+       ↓
+    3. Double-click: START_ALL_SERVERS.bat
+       ↓
+    4. Wait for 3 windows to open
+       ↓
+    5. Wait ~10 seconds
+       ↓
+    6. Look for success messages:
+       
+       Window 1: "✅ Model loaded successfully"
+       Window 2: "Server is running on PORT 8080"
+       Window 3: "Local: http://localhost:5173/"
+
+========================================
+
+┌─────────────────────────────────────┐
+│  STEP 4: OPEN APPLICATION           │
+│  🌐 USE YOUR BROWSER                │
+└─────────────────────────────────────┘
+
+    1. Open Chrome/Firefox/Edge
+       ↓
+    2. Type: http://localhost:5173
+       ↓
+    3. Press Enter
+       ↓
+    4. Wait for page to load
+       ↓
+    5. You should see TerraTrack homepage!
+
+========================================
+
+┌─────────────────────────────────────┐
+│  STEP 5: NAVIGATE TO SATELLITE      │
+│  🛰️  FIND THE FEATURE               │
+└─────────────────────────────────────┘
+
+    1. Look at top navigation bar
+       ↓
+    2. Click: "TerraBot"
+       ↓
+    3. Page loads with chat interface
+       ↓
+    4. Look for tabs at top:
+       [💬 Chat] [🛰️ Satellite Analysis]
+       ↓
+    5. Click: "🛰️ Satellite Analysis"
+       ↓
+    6. You should see upload interface!
+
+========================================
+
+┌─────────────────────────────────────┐
+│  STEP 6: UPLOAD IMAGES              │
+│  📸 SIMPLE MODE                     │
+└─────────────────────────────────────┘
+
+    1. Click: "📸 Simple Mode (PNG/JPEG)"
+       ↓
+    2. Enter location name (e.g., "Dubai")
+       ↓
+    3. Click "Before Image" upload box
+       ↓
+    4. Select 1 image (PNG or JPEG)
+       ↓
+    5. Click "After Image" upload box
+       ↓
+    6. Select 1 image (PNG or JPEG)
+       ↓
+    7. You should see: "✓ 1 file(s) selected"
+
+========================================
+
+┌─────────────────────────────────────┐
+│  STEP 7: ANALYZE                    │
+│  🚀 RUN THE ANALYSIS                │
+└─────────────────────────────────────┘
+
+    1. Check all fields filled:
+       ✓ Location name entered
+       ✓ Before image uploaded
+       ✓ After image uploaded
+       ↓
+    2. Click: "🚀 Analyze Changes"
+       ↓
+    3. Button changes to: "Analyzing..."
+       ↓
+    4. Wait 20-40 seconds
+       ↓
+    5. Progress indicator shows
+       ↓
+    6. Results appear!
+
+========================================
+
+┌─────────────────────────────────────┐
+│  STEP 8: VIEW RESULTS               │
+│  📊 SEE THE MAGIC!                  │
+└─────────────────────────────────────┘
+
+    You will see:
+
+    ┌─────────────────────────────────┐
+    │ 📊 Analysis Results: [Location] │
+    │ [Date] → [Date] | [Time]        │
+    │ [← New Analysis]                │
+    └─────────────────────────────────┘
+
+    ┌─────────────────────────────────┐
+    │ 🤖 AI-Generated Insights        │
+    │                                 │
+    │ Executive Summary               │
+    │ [AI-generated text...]          │
+    │                                 │
+    │ Detailed Analysis               │
+    │ [AI-generated text...]          │
+    │                                 │
+    │ Recommendations                 │
+    │ [AI-generated text...]          │
+    └─────────────────────────────────┘
+
+    ┌───────┬───────┬───────┐
+    │ 🌳    │ 🏗️    │ 💧    │
+    │ Veg   │ Urban │ Water │
+    │ +5.2% │ 3.8km²│ +2.1% │
+    └───────┴───────┴───────┘
+
+    ┌─────────────────────────────────┐
+    │ 🗺️ Change Detection            │
+    │ [12-panel visualization image]  │
+    └─────────────────────────────────┘
+
+    ┌─────────────────────────────────┐
+    │ 📝 Summary                      │
+    │ • Key finding 1                 │
+    │ • Key finding 2                 │
+    │ • Key finding 3                 │
+    └─────────────────────────────────┘
+
+========================================
+
+┌─────────────────────────────────────┐
+│  TROUBLESHOOTING                    │
+│  🔧 IF SOMETHING GOES WRONG         │
+└─────────────────────────────────────┘
+
+Problem: "API key not configured"
+Solution: 
+  → Check .env file
+  → Make sure key is correct
+  → No quotes around key
+  → Restart servers
+
+Problem: "Satellite backend not available"
+Solution:
+  → Check if backend window is open
+  → Look for "✅ Model loaded"
+  → Restart START_ALL_SERVERS.bat
+
+Problem: Blank page
+Solution:
+  → Press F12 (open DevTools)
+  → Check Console tab for errors
+  → Make sure all 3 servers running
+  → Try hard refresh (Ctrl+Shift+R)
+
+Problem: "Analysis failed"
+Solution:
+  → Check image files are valid
+  → Try smaller images (< 10MB)
+  → Check backend window for errors
+  → Try again
+
+========================================
+
+┌─────────────────────────────────────┐
+│  SUCCESS INDICATORS                 │
+│  ✅ EVERYTHING WORKING              │
+└─────────────────────────────────────┘
+
+Backend Window:
+  ✅ Model loaded successfully
+  ✓ LLM explainer initialized
+  INFO: Uvicorn running on http://0.0.0.0:8000
+
+Server Window:
+  MongoDB Connected
+  Server is running on PORT 8080
+
+Client Window:
+  VITE ready in XXX ms
+  Local: http://localhost:5173/
+
+Browser:
+  ✅ Page loads
+  ✅ Can navigate
+  ✅ Can upload files
+  ✅ Analysis completes
+  ✅ Results display
+
+========================================
+
+┌─────────────────────────────────────┐
+│  FOLDER STRUCTURE                   │
+│  📁 WHERE EVERYTHING IS             │
+└─────────────────────────────────────┘
+
+TerraTrack_BitNBuild/
+│
+├── .env                    ← YOUR API KEY HERE!
+├── START_ALL_SERVERS.bat   ← CLICK TO START
+│
+├── START_HERE.txt          ← Read first
+├── SETUP_GUIDE.md          ← Full guide
+├── README_SATELLITE.md     ← Documentation
+├── GET_YOUR_API_KEY.txt    ← API key help
+├── PROJECT_STRUCTURE.txt   ← File structure
+├── CHANGES_MADE.md         ← What changed
+├── SYSTEM_STATUS.md        ← Current status
+├── QUICK_VISUAL_GUIDE.txt  ← This file
+│
+├── satellite-backend/      ← AI Backend
+│   ├── main.py
+│   ├── models/
+│   └── ...
+│
+├── server/                 ← Express Server
+│   ├── index.js
+│   └── ...
+│
+└── client/                 ← React Frontend
+    ├── src/
+    └── ...
+
+========================================
+
+┌─────────────────────────────────────┐
+│  QUICK REFERENCE                    │
+│  📞 IMPORTANT LINKS                 │
+└─────────────────────────────────────┘
+
+Get API Key:
+https://aistudio.google.com/app/apikey
+
+Access Application:
+http://localhost:5173
+
+Backend API:
+http://localhost:8000
+
+Server API:
+http://localhost:8080
+
+========================================
+
+┌─────────────────────────────────────┐
+│  REMEMBER                           │
+│  ⚠️  IMPORTANT NOTES                │
+└─────────────────────────────────────┘
+
+1. Get NEW API key (old one blocked)
+2. Update .env file with your key
+3. Keep API key private
+4. Don't commit .env to Git
+5. Restart servers after .env change
+6. Wait for all 3 servers to start
+7. Use Chrome/Firefox/Edge browser
+8. Analysis takes 20-40 seconds
+9. Keep terminal windows open
+10. Have fun analyzing! 🌍
+
+========================================
+
+🎉 YOU'RE READY TO GO!
+
+Just follow the steps above and you'll be
+analyzing satellite images in no time!
+
+========================================

@@ -4,10 +4,12 @@ import ChatMessage from '../components/ChatMessage'
 import ChatInput from '../components/ChatInput'
 import VisualizationDisplay from '../components/VisualizationDisplay'
 import SourceCitations from '../components/SourceCitations'
+import SatelliteAnalysis from '../components/SatelliteAnalysis'
 import { geminiService } from '../services/geminiService'
 import { toast } from 'react-hot-toast'
 
 const TerraBotPage = () => {
+  const [activeTab, setActiveTab] = useState('chat') // 'chat' or 'satellite'
   const [messages, setMessages] = useState([
     {
       id: 1,
@@ -99,7 +101,7 @@ const TerraBotPage = () => {
       
       {/* Header */}
       <div className="relative bg-black/100 backdrop-blur-md border-b border-green-500/20">
-        <div className="max-w-8xl mx-auto py-6">
+        <div className="max-w-8xl mx-auto py-6 px-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2">
               <div className="w-12 h-12 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full flex items-center justify-center">
@@ -114,95 +116,129 @@ const TerraBotPage = () => {
             </div>
             
             <div className="flex items-center space-x-3">
-              <div className="flex items-center space-x-2 text-sm text-green-300">
-                <div className={`w-2 h-2 rounded-full ${isLoading ? 'bg-yellow-400 animate-pulse' : 'bg-green-400'}`}></div>
-                <span>{isLoading ? 'Analyzing...' : 'Ready'}</span>
+              {/* Tab Selector */}
+              <div className="flex bg-slate-800/50 rounded-lg p-1">
+                <button
+                  onClick={() => setActiveTab('chat')}
+                  className={`px-4 py-2 rounded-md text-sm font-medium transition-all ${
+                    activeTab === 'chat'
+                      ? 'bg-green-500 text-white'
+                      : 'text-gray-300 hover:text-white'
+                  }`}
+                >
+                  💬 Chat
+                </button>
+                <button
+                  onClick={() => setActiveTab('satellite')}
+                  className={`px-4 py-2 rounded-md text-sm font-medium transition-all ${
+                    activeTab === 'satellite'
+                      ? 'bg-green-500 text-white'
+                      : 'text-gray-300 hover:text-white'
+                  }`}
+                >
+                  🛰️ Satellite Analysis
+                </button>
               </div>
-              
-              <button
-                onClick={clearChat}
-                className="px-4 py-2 bg-slate-700/70 hover:bg-slate-600/80 text-white rounded-lg text-sm transition-all duration-200 backdrop-blur-sm border border-green-500/20 hover:border-green-400/40"
-              >
-                Clear Chat
-              </button>
+
+              {activeTab === 'chat' && (
+                <>
+                  <div className="flex items-center space-x-2 text-sm text-green-300">
+                    <div className={`w-2 h-2 rounded-full ${isLoading ? 'bg-yellow-400 animate-pulse' : 'bg-green-400'}`}></div>
+                    <span>{isLoading ? 'Analyzing...' : 'Ready'}</span>
+                  </div>
+                  
+                  <button
+                    onClick={clearChat}
+                    className="px-4 py-2 bg-slate-700/70 hover:bg-slate-600/80 text-white rounded-lg text-sm transition-all duration-200 backdrop-blur-sm border border-green-500/20 hover:border-green-400/40"
+                  >
+                    Clear Chat
+                  </button>
+                </>
+              )}
             </div>
           </div>
         </div>
       </div>
 
-      {/* Chat Container */}
-      <div className="relative max-w-6xl mx-auto px-4 py-6 h-[calc(100vh-200px)] flex flex-col">
-        {/* Messages Area */}
-        <div className="flex-1 overflow-y-auto space-y-4 mb-6 scrollbar-thin scrollbar-thumb-green-600 scrollbar-track-transparent">
-          <AnimatePresence mode="popLayout">
-            {messages.map((message) => (
-              <motion.div
-                key={message.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.3 }}
-              >
-                <ChatMessage message={message} />
-                
-                {/* Render visualization if present */}
-                {message.visualization && (
+      {/* Content Area */}
+      <div className="relative max-w-6xl mx-auto px-4 py-6">
+        {activeTab === 'chat' ? (
+          <div className="h-[calc(100vh-200px)] flex flex-col">
+            {/* Messages Area */}
+            <div className="flex-1 overflow-y-auto space-y-4 mb-6 scrollbar-thin scrollbar-thumb-green-600 scrollbar-track-transparent">
+              <AnimatePresence mode="popLayout">
+                {messages.map((message) => (
                   <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.2 }}
-                    className="mt-4"
-                  >
-                    <VisualizationDisplay data={message.visualization} />
-                  </motion.div>
-                )}
-                
-                {/* Render sources if present */}
-                {message.sources && message.sources.length > 0 && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
+                    key={message.id}
+                    initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.3 }}
-                    className="mt-3"
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.3 }}
                   >
-                    <SourceCitations sources={message.sources} />
+                    <ChatMessage message={message} />
+                    
+                    {/* Render visualization if present */}
+                    {message.visualization && (
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: 0.2 }}
+                        className="mt-4"
+                      >
+                        <VisualizationDisplay data={message.visualization} />
+                      </motion.div>
+                    )}
+                    
+                    {/* Render sources if present */}
+                    {message.sources && message.sources.length > 0 && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.3 }}
+                        className="mt-3"
+                      >
+                        <SourceCitations sources={message.sources} />
+                      </motion.div>
+                    )}
                   </motion.div>
-                )}
-              </motion.div>
-            ))}
-          </AnimatePresence>
-          
-          {/* Typing Indicator */}
-          {isTyping && (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              className="flex items-center space-x-3 px-4 py-3"
-            >
-              <div className="w-8 h-8 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full flex items-center justify-center">
-                <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                </svg>
-              </div>
-              <div className="flex space-x-1">
-                <div className="w-2 h-2 bg-green-400 rounded-full animate-bounce"></div>
-                <div className="w-2 h-2 bg-green-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                <div className="w-2 h-2 bg-green-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
-              </div>
-              <span className="text-green-300 text-sm">TerraBot is analyzing...</span>
-            </motion.div>
-          )}
-          
-          <div ref={messagesEndRef} />
-        </div>
+                ))}
+              </AnimatePresence>
+              
+              {/* Typing Indicator */}
+              {isTyping && (
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  className="flex items-center space-x-3 px-4 py-3"
+                >
+                  <div className="w-8 h-8 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full flex items-center justify-center">
+                    <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                    </svg>
+                  </div>
+                  <div className="flex space-x-1">
+                    <div className="w-2 h-2 bg-green-400 rounded-full animate-bounce"></div>
+                    <div className="w-2 h-2 bg-green-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+                    <div className="w-2 h-2 bg-green-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                  </div>
+                  <span className="text-green-300 text-sm">TerraBot is analyzing...</span>
+                </motion.div>
+              )}
+              
+              <div ref={messagesEndRef} />
+            </div>
 
-        {/* Chat Input */}
-        <ChatInput 
-          onSendMessage={handleSendMessage} 
-          isLoading={isLoading}
-          placeholder="Ask me about climate trends, weather patterns, or environmental data..."
-        />
+            {/* Chat Input */}
+            <ChatInput 
+              onSendMessage={handleSendMessage} 
+              isLoading={isLoading}
+              placeholder="Ask me about climate trends, weather patterns, or environmental data..."
+            />
+          </div>
+        ) : (
+          <SatelliteAnalysis />
+        )}
       </div>
     </div>
   )

@@ -1,0 +1,245 @@
+========================================
+📁 TERRATRACK PROJECT STRUCTURE
+========================================
+
+TerraTrack_BitNBuild/
+│
+├── 📄 .env                              ← GEMINI API KEY (IMPORTANT!)
+├── 📄 .gitignore                        ← Git ignore file
+│
+├── 🚀 START_ALL_SERVERS.bat             ← START HERE! (One-click)
+├── 🚀 start-satellite-backend.bat       ← Backend only
+│
+├── 📖 START_HERE.txt                    ← Quick start guide
+├── 📖 SETUP_GUIDE.md                    ← Complete setup
+├── 📖 README_SATELLITE.md               ← Full documentation
+├── 📖 GET_YOUR_API_KEY.txt              ← API key help
+├── 📖 PROJECT_STRUCTURE.txt             ← This file
+│
+├── 📁 satellite-backend/                ← AI BACKEND (Python/FastAPI)
+│   │
+│   ├── 📄 main.py                       ← FastAPI server (Port 8000)
+│   ├── 📄 predict.py                    ← Prediction engine
+│   ├── 📄 llm_explainer.py              ← Gemini LLM integration
+│   ├── 📄 analyzer.py                   ← Environmental analysis
+│   ├── 📄 visualization.py              ← Image generation
+│   ├── 📄 image_converter.py            ← RGB to multi-band
+│   ├── 📄 model.py                      ← AI model architecture
+│   ├── 📄 config.py                     ← Configuration
+│   ├── 📄 dataset.py                    ← Data loading
+│   ├── 📄 train.py                      ← Model training
+│   ├── 📄 requirements.txt              ← Python dependencies
+│   │
+│   ├── 📁 backend/                      ← Upload storage
+│   │   └── 📁 uploads/                  ← User uploaded images
+│   │
+│   ├── 📁 models/                       ← AI model files
+│   │   └── 📄 best_model.pth            ← Trained model (282 MB)
+│   │
+│   └── 📁 results/                      ← Analysis results
+│       └── 📁 [location]_[timestamp]/   ← Individual results
+│           ├── 📄 change_analysis.png   ← 12-panel visualization
+│           ├── 📄 analysis_report.json  ← JSON report
+│           ├── 📄 report.txt            ← Text report
+│           └── 📄 llm_report.txt        ← LLM-enhanced report
+│
+├── 📁 server/                           ← EXPRESS BACKEND (Node.js)
+│   │
+│   ├── 📄 index.js                      ← Main server (Port 8080)
+│   ├── 📄 package.json                  ← Node dependencies
+│   ├── 📄 .env                          ← Server config
+│   │
+│   ├── 📁 config/                       ← Configuration
+│   │   └── 📄 connectDB.js              ← MongoDB connection
+│   │
+│   ├── 📁 routes/                       ← API routes
+│   │   ├── 📄 satellite.routes.js       ← Satellite API proxy
+│   │   ├── 📄 user.routes.js            ← User routes
+│   │   ├── 📄 campaign.routes.js        ← Campaign routes
+│   │   ├── 📄 donation.routes.js        ← Donation routes
+│   │   └── 📄 ...                       ← Other routes
+│   │
+│   ├── 📁 models/                       ← Database models
+│   ├── 📁 controllers/                  ← Route controllers
+│   └── 📁 middleware/                   ← Express middleware
+│
+└── 📁 client/                           ← REACT FRONTEND (Vite)
+    │
+    ├── 📄 package.json                  ← Node dependencies
+    ├── 📄 vite.config.js                ← Vite configuration
+    ├── 📄 .env                          ← Client config
+    │
+    ├── 📁 public/                       ← Static assets
+    │
+    └── 📁 src/                          ← Source code
+        │
+        ├── 📄 App.jsx                   ← Main app component
+        ├── 📄 main.jsx                  ← Entry point
+        ├── 📄 index.css                 ← Global styles
+        │
+        ├── 📁 components/               ← React components
+        │   ├── 📄 SatelliteAnalysis.jsx ← Satellite UI (MAIN)
+        │   ├── 📄 ChatMessage.jsx       ← Chat message
+        │   ├── 📄 ChatInput.jsx         ← Chat input
+        │   ├── 📄 VanillaGlobeScene.jsx ← 3D Globe
+        │   ├── 📄 SolarSystemNavbar.jsx ← Navigation
+        │   └── 📄 ...                   ← Other components
+        │
+        ├── 📁 pages/                    ← Page components
+        │   ├── 📄 TerraBotPage.jsx      ← TerraBot page (MAIN)
+        │   ├── 📄 HomePage.jsx          ← Home page
+        │   ├── 📄 DashboardPage.jsx     ← Dashboard
+        │   └── 📄 ...                   ← Other pages
+        │
+        ├── 📁 services/                 ← API services
+        │   └── 📄 geminiService.js      ← Gemini API client
+        │
+        ├── 📁 context/                  ← React context
+        ├── 📁 routes/                   ← Route configuration
+        ├── 📁 layouts/                  ← Layout components
+        └── 📁 utils/                    ← Utility functions
+
+========================================
+🔄 DATA FLOW
+========================================
+
+1. User uploads images
+   └─> SatelliteAnalysis.jsx (React)
+
+2. Frontend sends request
+   └─> POST /api/satellite/analyze
+
+3. TerraTrack Server (Express)
+   └─> Proxy to satellite backend
+
+4. Satellite Backend (FastAPI)
+   └─> Receives files
+
+5. Image Converter (if RGB)
+   └─> Converts to 13-band format
+
+6. AI Model (Siamese U-Net)
+   └─> Detects changes
+
+7. Environmental Analyzer
+   └─> Calculates NDVI, NDBI, NDWI
+
+8. LLM Explainer (Gemini)
+   └─> Generates insights
+
+9. Visualization Generator
+   └─> Creates 12-panel image
+
+10. Results returned
+    └─> Displayed in UI
+
+========================================
+🌐 PORTS & URLS
+========================================
+
+Satellite Backend:
+   Port: 8000
+   URL: http://localhost:8000
+   API: /api/analyze, /api/results/:id
+
+TerraTrack Server:
+   Port: 8080
+   URL: http://localhost:8080
+   API: /api/satellite/*
+
+TerraTrack Client:
+   Port: 5173
+   URL: http://localhost:5173
+   Access: Open in browser
+
+========================================
+📦 DEPENDENCIES
+========================================
+
+Satellite Backend (Python):
+   - fastapi
+   - uvicorn
+   - torch
+   - google-genai
+   - rasterio
+   - matplotlib
+   - numpy
+   - pillow
+
+TerraTrack Server (Node.js):
+   - express
+   - axios
+   - form-data
+   - multer
+   - mongoose
+   - dotenv
+
+TerraTrack Client (Node.js):
+   - react
+   - vite
+   - axios
+   - framer-motion
+   - react-hot-toast
+   - @google/generative-ai
+   - three (for 3D globe)
+
+========================================
+🔑 ENVIRONMENT VARIABLES
+========================================
+
+TerraTrack_BitNBuild/.env:
+   GEMINI_API_KEY=your-key-here
+
+TerraTrack_BitNBuild/server/.env:
+   PORT=8080
+   MONGODB_URI=...
+   FRONTEND_URL=http://localhost:5173
+   SATELLITE_API_URL=http://localhost:8000
+
+TerraTrack_BitNBuild/client/.env:
+   VITE_API_URL=http://localhost:8080
+   VITE_STRIPE_PUBLIC_KEY=...
+   VITE_OPENAQ_API_KEY=...
+
+========================================
+🎯 KEY FILES TO KNOW
+========================================
+
+STARTUP:
+   START_ALL_SERVERS.bat         ← Start everything
+
+CONFIGURATION:
+   .env                          ← Gemini API key
+   server/.env                   ← Server config
+   client/.env                   ← Client config
+
+MAIN CODE:
+   satellite-backend/main.py     ← Backend API
+   server/routes/satellite.routes.js  ← Proxy routes
+   client/src/components/SatelliteAnalysis.jsx  ← UI
+   client/src/pages/TerraBotPage.jsx  ← Page
+
+AI/ML:
+   satellite-backend/model.py    ← Model architecture
+   satellite-backend/predict.py  ← Inference
+   satellite-backend/models/best_model.pth  ← Weights
+
+LLM:
+   satellite-backend/llm_explainer.py  ← Gemini integration
+
+DOCUMENTATION:
+   START_HERE.txt                ← Quick start
+   SETUP_GUIDE.md                ← Full setup
+   README_SATELLITE.md           ← Documentation
+
+========================================
+✅ CLEAN & ORGANIZED!
+========================================
+
+Everything is now in TerraTrack_BitNBuild/
+
+No unnecessary files outside!
+
+Easy to understand and maintain!
+
+========================================

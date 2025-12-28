@@ -1,278 +1,323 @@
-# 🌍 TerraTrack - Environmental Impact Platform
-TerraTrack is a cutting-edge environmental monitoring and AR visualization platform that combines real-time environmental data tracking, immersive 3D plant experiences, and comprehensive campaign management for environmental conservation efforts.
+# 🌍 TerraTrack - Climate Action Platform with Satellite Analysis
 
-# Demo Video
-
-https://github.com/user-attachments/assets/12da07fa-7ddc-43d3-8281-0baf4f016594
-
-
-## ✨ Key Features
-
-### 🎯 *Environmental Tracking & Analytics*
-- *Interactive Dashboard*: Real-time environmental metrics and data visualization
-- *Google Maps Integration*: Interactive mapping with point-and-click environmental analysis
-- *Campaign Management*: Create, track, and manage environmental conservation campaigns
-- *Donation System*: Integrated Stripe payment system for environmental funding
-- *Advanced Analytics*: Charts and reports for environmental impact tracking
-
-### 🌱 *AR Plant Experience*
-- *Camera-based AR*: Place virtual plants in real environments using device camera
-- *High-quality 3D Models*: Detailed plant models with realistic materials and animations
-- *Environmental Benefits*: Learn about each plant's CO₂ removal and air purification capabilities
-- *Cross-device Compatibility*: Optimized for both desktop and mobile devices
-- *Performance Adaptive*: Automatically adjusts quality based on device capabilities
-
-### 🤖 *AI-Powered Features*
-- *TerraBot Chat*: AI assistant for environmental questions and guidance using Google Gemini
-- *Smart Analysis*: AI-powered environmental data interpretation
-- *Personalized Recommendations*: Tailored suggestions for environmental actions
-
-## 🛠 Tech Stack
-
-### *Frontend*
-- *Framework*: React 19+ with functional components and hooks
-- *Build Tool*: Vite (ultra-fast build system with HMR)
-- *Styling*: Tailwind CSS with custom design system
-- *Routing*: React Router DOM for SPA navigation
-- *State Management*: React Context API + hooks
-- *Icons*: Lucide React (modern icon library)
-
-### *3D Graphics & AR*
-- *3D Engine*: Three.js (WebGL-based 3D graphics)
-- *React Integration*: @react-three/fiber (React renderer for Three.js)
-- *3D Utilities*: @react-three/drei (helpers and abstractions)
-- *Model Loading*: GLTF/GLB model support with fallbacks
-- *AR Technology*: Camera-based AR using getUserMedia API
-- *Performance*: Adaptive quality and device-specific optimizations
-
-### *Backend & Database*
-- *Runtime*: Node.js with Express.js framework
-- *Database*: MongoDB with Mongoose ODM
-- *Authentication*: JWT tokens with refresh token system
-- *File Upload*: Multer with Cloudinary integration
-- *Email Service*: Nodemailer for transactional emails
-
-### *Integrations & APIs*
-- *Maps*: Google Maps API for interactive mapping
-- *AI*: Google Gemini API for chat functionality  
-- *Payments*: Stripe API for donation processing
-- *Charts*: Chart.js with React wrapper for data visualization
-- *Animations*: Framer Motion for smooth transitions
-
-### *Development Tools*
-- *Package Manager*: npm
-- *Code Quality*: ESLint with custom configuration
-- *Version Control*: Git
-- *Development*: Hot Module Replacement (HMR)
-- *Build*: Optimized production builds with code splitting
-
-## 🚀 Getting Started
-
-### *Prerequisites*
-- Node.js (v18 or higher)
-- npm or yarn package manager
-- MongoDB database (local or cloud)
-- Git for version control
-
-Important: this repo contains frontend and backend services in client/ and server/ respectively. The demo video at the top demonstrates the main workflows.
-
-### *Installation*
-
-1. *Clone the repository*
-   bash
-   git clone https://github.com/ebrahimgamdiwala/TerraTrack_BitNBuild.git
-   cd TerraTrack_BitNBuild
-   
-
-2. *Install Frontend Dependencies*
-   bash
-   cd client
-   npm install
-   
-
-3. *Install Backend Dependencies*
-   bash
-   cd ../server
-   npm install
-   
-
-4. *Environment Configuration*
-   
-   Create .env files in both client and server directories:
-   
-   *Client (.env):*
-   env
-   The base URL for API requests from the frontend (points at server)
-   VITE_API_URL=http://localhost:5000
-
-   Google Maps JavaScript API Key - used by interactive maps
-   Make sure Maps JavaScript API is enabled in Google Cloud Console and
-   add your development origins to HTTP referrers (e.g., http://localhost:5173/*)
-   VITE_GOOGLE_MAPS_API_KEY=your_google_maps_api_key
-
-   Stripe publishable key for client-side payment tokenization
-   VITE_STRIPE_PUBLIC_KEY=your_stripe_public_key
-
-   Optional: other API keys used by the demo app (set if you have them)
-   VITE_OPENWEATHER_API_KEY=your_openweather_api_key
-   VITE_GEMINI_API_KEY=your_gemini_api_key
-   
-   
-   *Server (.env):*
-   env
-   PORT=5000
-   MONGODB_URI=your_mongodb_connection_string
-   JWT_ACCESS_SECRET=your_jwt_access_secret
-   JWT_REFRESH_SECRET=your_jwt_refresh_secret
-   CLOUDINARY_CLOUD_NAME=your_cloudinary_name
-   CLOUDINARY_API_KEY=your_cloudinary_key
-   CLOUDINARY_API_SECRET=your_cloudinary_secret
-   STRIPE_SECRET_KEY=your_stripe_secret_key
-   GOOGLE_GEMINI_API_KEY=your_gemini_api_key
-   EMAIL_USER=your_email_address
-   EMAIL_PASS=your_email_password
-   
-
-   Notes about keys and restrictions:
-   - Keep production keys out of version control. Use a secrets manager or CI/CD secrets.
-   - For Google Maps, ensure billing is enabled on the Google Cloud project and the Maps JavaScript API is enabled. If you see an "InvalidKeyMapError" in the browser console, check key restrictions and referrers.
-
-
-### *Running the Application*
-
-1. *Start the Backend Server*
-   bash
-   cd server
-   npm run dev
-   
-   Backend will run on http://localhost:5000
-
-2. *Start the Frontend (in a new terminal)*
-   bash
-   cd client  
-   npm run dev
-   
-   Frontend will run on http://localhost:5173
-
-If you change .env in client/ or server/, restart the respective dev server so the values are reloaded.
-
-Quick troubleshooting:
-- Invalid or restricted Google Maps key will produce an "InvalidKeyMapError" in the browser console and the maps will not initialize. Verify the full key (no truncation), API enabled, and allowed referrers.
-- If window.google is undefined but you don't see InvalidKey errors, ensure the Maps script is loaded before code that accesses google.maps. Use a script loader or a React loader hook (e.g. @react-google-maps/api).
-
-Development tips:
-- To test payments use Stripe test keys only. Do not use live keys in local development.
-- To preview frontend static assets (including the demo video) you can use Vite's dev server or npm run preview after building.
-
-3. *Access the Application*
-   Open your browser and navigate to http://localhost:5173
-
-## 📱 Features Overview
-
-### *Dashboard*
-- Environmental metrics visualization
-- Interactive charts and graphs
-- Campaign progress tracking
-- Real-time data updates
-
-### *AR Plants Experience*
-- Camera-based augmented reality
-- High-quality 3D plant models
-- Environmental impact calculations
-- Mobile-optimized performance
-
-### *Campaign Management*
-- Create environmental campaigns
-- Track donations and progress
-- Share campaign details
-- Analytics and reporting
-
-### *TerraBot Chat*
-- AI-powered environmental assistant
-- Natural language processing
-- Contextual responses
-- Environmental education
+Complete climate action platform with AI-powered satellite change detection, environmental monitoring, and community engagement features.
 
 ---
 
-## 🏗 Project Structure
+## ⚠️ IMPORTANT: First Time Setup
+
+**Your Gemini API key was leaked and blocked. You MUST get a new one!**
+
+### Get Your New API Key:
+1. Visit: https://aistudio.google.com/app/apikey
+2. Click "Create API Key"
+3. Copy your new key
+4. Open `.env` file in this folder
+5. Replace `your-new-gemini-api-key-here` with your actual key
+6. Save the file
+
+---
+
+## 🚀 Quick Start
+
+### Step 1: Set API Key
+```
+1. Get key from: https://aistudio.google.com/app/apikey
+2. Edit: .env file
+3. Replace: your-new-gemini-api-key-here
+4. Save file
+```
+
+### Step 2: Start All Servers
+```
+Double-click: START_ALL_SERVERS.bat
+```
+
+### Step 3: Access Application
+```
+Open browser: http://localhost:5173
+```
+
+---
+
+## 📁 Project Structure
 
 ```
 TerraTrack_BitNBuild/
-├── client/                         # React frontend application
-│   ├── public/                     # Static assets (logos, icons, manifest, etc.)
-│   ├── src/                        # Source files
-│   │   ├── components/             # Reusable UI components
-│   │   ├── pages/                  # Application pages and routes
-│   │   ├── services/               # API service functions and utilities
-│   │   ├── context/                # React Context providers for global state
-│   │   ├── routes/                 # Route configurations
-│   │   ├── utils/                  # Helper functions and utilities
-│   │   ├── assets/                 # Local media, 3D models, and textures
-│   │   └── App.jsx                 # Root application component
-│   ├── index.html                  # HTML entry point
-│   ├── package.json                # Frontend dependencies and scripts
-│   ├── vite.config.js              # Vite configuration
-│   └── .env.example                # Example environment variables (frontend)
+├── .env                          ← YOUR API KEY HERE!
+├── START_ALL_SERVERS.bat         ← ONE-CLICK STARTUP
 │
-├── server/                         # Node.js backend application
-│   ├── config/                     # Configuration files (DB, email, cloud)
-│   ├── controllers/                # Business logic and route controllers
-│   ├── models/                     # MongoDB models (Mongoose schemas)
-│   ├── routes/                     # API endpoints and route definitions
-│   ├── middlewares/                # Middleware (auth, validation, error handling)
-│   ├── utils/                      # Utility modules and helpers
-│   ├── server.js                   # Entry point for backend server
-│   ├── package.json                # Backend dependencies and scripts
-│   └── .env.example                # Example environment variables (backend)
+├── satellite-backend/            ← AI Backend (Python/FastAPI)
+│   ├── main.py                   ← API server
+│   ├── models/                   ← AI model files
+│   ├── dataset/                  ← Training data
+│   └── ...                       ← Python files
 │
-├── .gitignore                      # Files and directories ignored by Git
-├── LICENSE                         # Open-source license file
-└── README.md                       # Project documentation
+├── server/                       ← Express Backend (Node.js)
+│   ├── index.js                  ← Main server
+│   ├── routes/                   ← API routes
+│   └── ...                       ← Server files
+│
+└── client/                       ← React Frontend
+    ├── src/                      ← Source code
+    ├── public/                   ← Static assets
+    └── ...                       ← Frontend files
 ```
-
-## 🔧 Available Scripts
-
-### *Frontend (client/)*
-- npm run dev - Start development server with HMR
-- npm run build - Build for production
-- npm run preview - Preview production build
-- npm run lint - Run ESLint
-
-### *Backend (server/)*
-- npm run dev - Start development server with nodemon
-- npm start - Start production server
-- npm run debug - Start with debugging enabled
-
-## 🌐 Browser Support
-
-- *Desktop*: Chrome 88+, Firefox 85+, Safari 14+, Edge 88+
-- *Mobile*: Chrome Mobile, Safari Mobile, Samsung Internet
-- *WebGL*: Required for 3D graphics and AR features
-- *Camera*: Required for AR plant placement feature
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch (git checkout -b feature/amazing-feature)
-3. Commit your changes (git commit -m 'Add amazing feature')
-4. Push to the branch (git push origin feature/amazing-feature)
-5. Open a Pull Request
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙋‍♂ Support
-
-For support, email ebrahimgamdiwala@gmail.com jenithjain09@gmail.com or create an issue in the GitHub repository.
-
-## 🔗 Links
-
-- *Live Demo*: [Coming Soon]
-- *Documentation*: [Coming Soon]
-- *API Docs*: [Coming Soon]
 
 ---
 
-Made with 🌱 for a greener planet by the TerraTrack team
+## 🎯 Features
+
+### 🛰️ Satellite Change Detection
+- AI-powered change detection (Siamese U-Net)
+- LLM-generated insights (Google Gemini)
+- Environmental analysis (NDVI, NDBI, NDWI)
+- 12-panel visualizations
+- Dual upload modes (RGB/Multi-band)
+
+### 🌱 Climate Action Platform
+- Campaign management
+- Donation system
+- Environmental alerts
+- Data visualization
+- Community engagement
+
+### 🤖 TerraBot AI Assistant
+- Climate data analysis
+- Natural language queries
+- Web scraping
+- Visualizations
+- Source citations
+
+---
+
+## 📚 Documentation
+
+### Quick Start:
+- **START_HERE.txt** - Read this first!
+- **QUICK_VISUAL_GUIDE.txt** - Step-by-step visual guide
+
+### Complete Guides:
+- **SETUP_GUIDE.md** - Full setup instructions
+- **README_SATELLITE.md** - Satellite feature documentation
+- **GET_YOUR_API_KEY.txt** - API key instructions
+
+### Reference:
+- **PROJECT_STRUCTURE.txt** - Folder structure
+- **CHANGES_MADE.md** - What was changed
+- **SYSTEM_STATUS.md** - Current status
+
+---
+
+## 🔧 Manual Setup
+
+### Install Dependencies:
+
+**Satellite Backend:**
+```bash
+cd satellite-backend
+pip install -r requirements.txt
+```
+
+**Server:**
+```bash
+cd server
+npm install
+```
+
+**Client:**
+```bash
+cd client
+npm install
+```
+
+### Start Servers:
+
+**Terminal 1 - Satellite Backend:**
+```bash
+cd satellite-backend
+python main.py
+```
+
+**Terminal 2 - Server:**
+```bash
+cd server
+npm start
+```
+
+**Terminal 3 - Client:**
+```bash
+cd client
+npm run dev
+```
+
+---
+
+## 🌐 Access Points
+
+- **Frontend**: http://localhost:5173
+- **Server**: http://localhost:8080
+- **Satellite Backend**: http://localhost:8000
+
+---
+
+## 📊 Tech Stack
+
+### Frontend:
+- React + Vite
+- Framer Motion
+- Three.js (3D Globe)
+- Tailwind CSS
+- Axios
+
+### Backend:
+- Express.js
+- MongoDB
+- Mongoose
+- JWT Authentication
+
+### AI Backend:
+- FastAPI
+- PyTorch
+- Google Gemini API
+- Rasterio
+- Matplotlib
+
+---
+
+## 🎨 Key Features
+
+### Satellite Analysis:
+1. Navigate to TerraBot page
+2. Click "🛰️ Satellite Analysis" tab
+3. Upload before/after images
+4. Get AI-powered analysis in 20-40 seconds
+
+### Climate Campaigns:
+- Create and manage campaigns
+- Track donations
+- View impact metrics
+- Community engagement
+
+### Environmental Monitoring:
+- Real-time alerts
+- Data visualization
+- Trend analysis
+- Predictive insights
+
+---
+
+## ⚠️ Troubleshooting
+
+### "API key not configured"
+- Get new key: https://aistudio.google.com/app/apikey
+- Update `.env` file
+- Restart servers
+
+### "Satellite backend not available"
+- Check if backend window is open
+- Look for "✅ Model loaded"
+- Restart START_ALL_SERVERS.bat
+
+### Blank page
+- Press F12 (DevTools)
+- Check Console for errors
+- Ensure all 3 servers running
+- Hard refresh (Ctrl+Shift+R)
+
+---
+
+## 🔒 Security
+
+### API Key Security:
+- ✅ Keep in .env file
+- ✅ Add .env to .gitignore
+- ✅ Never commit to Git
+- ✅ Never share publicly
+
+### If Key is Leaked:
+1. Create new key immediately
+2. Delete old key from Google Console
+3. Update .env file
+4. Restart servers
+
+---
+
+## 📝 Environment Variables
+
+### Root .env:
+```
+GEMINI_API_KEY=your-key-here
+```
+
+### server/.env:
+```
+PORT=8080
+MONGODB_URI=your-mongodb-uri
+FRONTEND_URL=http://localhost:5173
+```
+
+### client/.env:
+```
+VITE_API_URL=http://localhost:8080
+VITE_STRIPE_PUBLIC_KEY=your-stripe-key
+```
+
+---
+
+## 🎊 Success Indicators
+
+### Backend Running:
+```
+✅ Model loaded successfully
+✓ LLM explainer initialized
+INFO: Uvicorn running on http://0.0.0.0:8000
+```
+
+### Server Running:
+```
+MongoDB Connected
+Server is running on PORT 8080
+```
+
+### Client Running:
+```
+VITE ready in XXX ms
+Local: http://localhost:5173/
+```
+
+---
+
+## 📞 Quick Reference
+
+### Get API Key:
+https://aistudio.google.com/app/apikey
+
+### Start Application:
+```
+START_ALL_SERVERS.bat
+```
+
+### Access:
+http://localhost:5173
+
+### Documentation:
+- START_HERE.txt
+- SETUP_GUIDE.md
+- README_SATELLITE.md
+
+---
+
+## 🚀 Ready to Start!
+
+1. **Get API key**: https://aistudio.google.com/app/apikey
+2. **Update .env**: Replace placeholder with your key
+3. **Start servers**: Double-click START_ALL_SERVERS.bat
+4. **Open browser**: http://localhost:5173
+5. **Start analyzing**: TerraBot → Satellite Analysis
+
+---
+
+**Everything is ready! Just get your API key and start!** 🌍
+
+For detailed instructions, read **START_HERE.txt**
